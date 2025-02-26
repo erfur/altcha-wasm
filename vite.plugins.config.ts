@@ -16,7 +16,7 @@ function generateDTs(): Plugin {
         name = basename(String(lib.entry)).replace('.ts', '');
         target = join(config.build.outDir, name + '.d.ts');
       }
-	  },
+    },
     async writeBundle() {
       if (target) {
         await writeFile(target, `declare module 'altcha/${name}';`);

@@ -13,6 +13,7 @@ export default defineConfig({
       },
     }), wasm(),
   ],
+  base: '/altcha-wasm/',
   build: {
     target: 'esnext',
     lib: {
