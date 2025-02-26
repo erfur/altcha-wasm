@@ -1,6 +1,7 @@
 /// <reference types="vitest" />
 import { defineConfig } from 'vite';
 import { svelte } from '@sveltejs/vite-plugin-svelte';
+import wasm from 'vite-plugin-wasm';
 
 // https://vitejs.dev/config/
 export default defineConfig({
@@ -10,14 +11,14 @@ export default defineConfig({
         customElement: true,
         css: 'injected',
       },
-    }),
+    }), wasm(),
   ],
   build: {
-    target: 'modules',
+    target: 'esnext',
     lib: {
       entry: 'src/entry.ts',
       name: 'altcha',
-      formats: ['es', 'umd'],
+      formats: ['es'],
     },
     outDir: 'dist',
     minify: 'esbuild',
