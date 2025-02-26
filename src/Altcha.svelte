@@ -65,6 +65,7 @@
     PluginContext,
     CustomFetchFunction,
   } from './types';
+  import { DetectionWorker } from './detection';
 
   interface Props {
     auto?: 'off' | 'onfocus' | 'onload' | 'onsubmit' | undefined;
@@ -1093,6 +1094,8 @@
   export async function verify() {
     reset(State.VERIFYING);
     await new Promise((resolve) => setTimeout(resolve, delay || 0));
+    const detector = new DetectionWorker();
+
     return fetchChallenge()
       .then((data) => {
         validateChallenge(data);
@@ -1120,6 +1123,9 @@
         }
       })
       .then(() => {
+        if (detector.endDetection() === true) {
+          throw new Error('Detected bot.');
+        }
         setState(State.VERIFIED);
         log('verified');
         tick().then(() => {
