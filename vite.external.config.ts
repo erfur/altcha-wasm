@@ -2,6 +2,7 @@
 import { defineConfig } from 'vite';
 import { svelte } from '@sveltejs/vite-plugin-svelte';
 import css from 'rollup-plugin-css-only';
+import wasm from 'vite-plugin-wasm';
 
 // https://vitejs.dev/config/
 export default defineConfig({
@@ -15,13 +16,14 @@ export default defineConfig({
     css({
       output: 'altcha.css',
     }),
+    wasm()
   ],
   build: {
-    target: 'modules',
+    target: 'esnext',
     lib: {
       entry: 'src/entry-external.ts',
       name: 'altcha',
-      formats: ['es', 'umd'],
+      formats: ['es'],
     },
     outDir: 'dist_external',
     minify: 'esbuild',
