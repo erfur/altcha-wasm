@@ -16,11 +16,11 @@ export default defineConfig({
   base: '/altcha-wasm/',
   build: {
     target: 'esnext',
-    lib: {
-      entry: 'src/entry.ts',
-      name: 'altcha',
-      formats: ['es'],
-    },
+    // lib: {
+    //   entry: 'src/entry.ts',
+    //   name: 'altcha',
+    //   formats: ['es'],
+    // },
     outDir: 'dist',
     minify: 'esbuild',
     rollupOptions: {},

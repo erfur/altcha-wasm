@@ -67,7 +67,7 @@
   "scripts": {
     "dev": "vite",
     "build": "npm run build:wasm && npm run build:bundle && npm run build:external && npm run build:plugins",
-    "build:bundle": "rimraf dist && vite build && cp src/declarations.d.ts dist/altcha.d.ts",
+    "build:bundle": "rimraf dist && vite build",
     "build:external": "rimraf dist_external && vite build -c vite.external.config.ts && cp src/declarations.d.ts dist_external/altcha.d.ts",
     "build:plugins": "rimraf dist_plugins && find src/plugins -type f -name '*.ts' | xargs -I {} vite build -c vite.plugins.config.ts -- {}",
     "build:wasm": "wasm-pack build ./detection-wasm",
